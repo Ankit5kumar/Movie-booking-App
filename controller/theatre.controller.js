@@ -1,4 +1,5 @@
 const Theatre = require('../models/theatre.model')
+const Movie = require('../models/movie.models')
 
 exports.createTheatre = async (req,res)=>{
  const theatreObject = {
@@ -68,8 +69,8 @@ exports.updateTheatre = async (req,res)=>{
 
 exports.addMoviesToTheatre = async (req,res) => {
 
-    const theatreId= req.params.theatreId;
-
+    const theatreId = req.params.theatreId;
+    console.log(theatreId)
 
     const savedTheatre = await Theatre.findOne({_id:theatreId});
 
@@ -78,23 +79,32 @@ exports.addMoviesToTheatre = async (req,res) => {
     }
 
     const movieIds = req.body.movies;
-
-    if(req.body.insert===true){
+    console.log(movieIds);
+  
+    if(req.body.insert=true){
         console.log("inside insert");
     movieIds.forEach(movieId => {
         savedTheatre.movies.push(movieId);
     })}
-    else if(req.body.delete===true){
+    else if(req.body.delete){
 
         savedMovieIds = savedTheatre.movies.filter((movieId)=>{
              return !movieIds.includes(movieId.toString());
         })
     savedTheatre.movies=savedMovieIds;
+
     }
 
 
     const updatedTheatre = await savedTheatre.save();
-    return res.status(200).send(updatedTheatre);  
-
-   
+    console.log(updatedTheatre)
+    return res.status(200).send({msg:'array of movies',updatedTheatre});  
 }
+
+exports.checkIfMovieRunningInTheatre = async (req,res) => {
+    const {theatreId,movieId} = req.params;
+    const savedTheatre = await Theatre.findOne({_id:theatreId});
+    
+}
+   
+
