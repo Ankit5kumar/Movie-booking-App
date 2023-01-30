@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const constants = require('constants');
+const constants = require('../utils/constants');
 
 const userSchema = new mongoose.Schema({
     name:{
@@ -33,4 +33,4 @@ const userSchema = new mongoose.Schema({
         required: true,
     }
 })
-mongoose.exports = userSchema.model('User',userSchema)
+mongoose.exports = mongoose.model('User',userSchema)

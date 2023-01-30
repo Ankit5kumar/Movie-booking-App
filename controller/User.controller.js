@@ -1,4 +1,4 @@
-const User = require('../models/user.controller')
+const User = require('../models/user.model')
 const bcrypt = require('bcrypt');
 
 exports.update = async (req, res) => {
