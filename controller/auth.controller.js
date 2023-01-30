@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt')
 const e = require('express')
-const User = require('../models/auth.controllers')
+const User = require('../models/user.model')
 const constants = require('../utils/constants')
 const jwt = require('jsonwebtoken');
 const config = require('../configs/auth.config');
