@@ -81,7 +81,7 @@ exports.addMoviesToTheatre = async (req,res) => {
     const movieIds = req.body.movies;
     console.log(movieIds);
   
-    if(req.body.insert=true){
+    if(req.body.insert){
         console.log("inside insert");
     movieIds.forEach(movieId => {
         savedTheatre.movies.push(movieId);
@@ -104,6 +104,20 @@ exports.addMoviesToTheatre = async (req,res) => {
 exports.checkIfMovieRunningInTheatre = async (req,res) => {
     const {theatreId,movieId} = req.params;
     const savedTheatre = await Theatre.findOne({_id:theatreId});
+
+    const savedMovie = await Movie.findOne({_id:movieId});
+
+    if(!savedTheatre){
+        res.status(400).send({msg:"Invalid theatre id"});
+    }
+    if(!savedMovie){
+        res.status(400).send({msg:"Invalid movie id"});
+    }
+
+    const response = {
+        msg:savedTheatre.movies.includes(savedMovie._id)?"movie is present":"movie is not present"
+    }
+    res.status(200).send({msg:response});
     
 }
    
