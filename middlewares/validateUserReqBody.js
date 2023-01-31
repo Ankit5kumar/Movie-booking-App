@@ -1,7 +1,7 @@
-const User  = require('../models/user.model');
+const User = require('../models/user.model');
 const constants = require('../utils/constants');
 
-validateUserReqBody = async (req, res, next) => {
+ const validateUserReqBody = async (req, res, next) => {
     // Check
     if(!req.body.name){
         return res.status(400).send({msg:"Failed! name is not provided"})
