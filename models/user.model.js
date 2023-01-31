@@ -31,6 +31,11 @@ const userSchema = new mongoose.Schema({
     userStatus:{
         type: String,
         required: true,
+    },
+    createdAt:{
+        type: Date, 
+        immutable: true,
+        default:()=>{return Date.now()}
     }
 })
 module.exports = mongoose.model('User',userSchema)

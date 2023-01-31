@@ -11,7 +11,7 @@ verifyToken = (req, res, next)=>{
     }
     jwt.verify(token,authConfig.secret,(err,decoded)=>{
         if(err){
-            return res.status(401).send({msg:Unauthenticated});
+            return res.status(401).send({msg:"Unauthenticated"});
         }
         req.userId = decoded.id;
         next();

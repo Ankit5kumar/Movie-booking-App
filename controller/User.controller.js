@@ -8,21 +8,22 @@ exports.update = async (req, res) => {
         return res.status(400).send("password not passed");
     }
     try {
-        const user = await User.findOneUpdate({
+        const user = await User.findOneAndUpdate({
             userId: userId
         },{
             password: bcrypt.hashSync(req.body.password,10)
         });
         res.status(200).send({msg:"password update successfully"})
     } catch (error) {
-        res.status(500).send({msg:"Some internal error occurred"})
+        console.log(error)
+        res.status(500).send({msg:"Some internal error occurred"});
     }
 }
 exports.updateUser = async (req,res)=>{
  const userId = req.params.userId;
 
  try {
-    const user  = await User.findOneUpdate(
+    const user  = await User.findOneAndUpdate(
         {userId: userId},
         {userStatus:req.body.userStatus}
         )

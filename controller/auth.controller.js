@@ -1,5 +1,4 @@
 const bcrypt = require('bcrypt')
-const e = require('express')
 const User = require('../models/user.model')
 const constants = require('../utils/constants')
 const jwt = require('jsonwebtoken');
@@ -18,7 +17,8 @@ exports.signup = async (req, res) => {
         email:req.body.email,
         password:bcrypt.hashSync(req.body.password,8),
         userStatus:userStatus,
-        userType:req.body.userType
+        userTypes:req.body.userTypes,
+        createdAt:User.createdAt
     }
 
     try {
@@ -33,7 +33,7 @@ exports.signin = async (req, res) => {
     const {userId,password} = req.body;
     //verify wether the userId is correct or not
 
-    const user = await User.findOne(userId);
+    const user = await User.findOne({userId});
     
     if(!user){
         res.status(400).send({msg:"UserId doesn't exist"});
@@ -49,7 +49,7 @@ exports.signin = async (req, res) => {
         res.status(401).send({msg:"invalid password"})
     }
     const token  = jwt.sign({id:user.userId},config.secret,{
-        expiresIn:120
+        expiresIn:'1h'
     });
     res.status(200).send({
         name:user.name,

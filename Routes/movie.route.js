@@ -2,10 +2,11 @@ const express = require('express')
 const movieController = require('../controller/movie.controller');
 const movieRequestValidator = require('../middlewares/validateMovie');
 const Route = express.Router();
+const {verifyToken,isAdmin} = require('../middlewares/authJWT');
 
 
 
-    Route.post("/mba/api/v1/movies", [movieRequestValidator.validateMovieRequest], 
+    Route.post("/mba/api/v1/movies", [verifyToken,isAdmin,movieRequestValidator.validateMovieRequest], 
     movieController.createMovie)
 
     Route.get("/mba/api/v1/movies",movieController.getAllMovies)

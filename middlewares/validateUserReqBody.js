@@ -26,7 +26,7 @@ const constants = require('../utils/constants');
      // validate userTypes
      const userTypes = [constants.userTypes.admin,constants.userTypes.customer,constants.userTypes.client];
 
-     if(req.body.userType && !userTypes.includes(req.body.userType)){
+     if(req.body.userTypes && !userTypes.includes(req.body.userTypes)){
          return res.status(400).send({msg:`Failed usertype should be among: ${userTypes}`})
      }
      next();
