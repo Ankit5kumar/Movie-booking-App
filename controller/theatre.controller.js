@@ -115,10 +115,11 @@ exports.checkIfMovieRunningInTheatre = async (req,res) => {
     }
 
     const response = {
-        msg:savedTheatre.movies.includes(savedMovie._id)?"movie is present":"movie is not present"
+        msg:savedTheatre.movies.includes(savedMovie._id) ? "movie is present":"movie is not present"
     }
     res.status(200).send({msg:response});
     
 }
+
    
 

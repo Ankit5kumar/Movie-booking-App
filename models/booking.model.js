@@ -15,6 +15,10 @@ const bookingSchema = new mongoose.Schema({
         require:true,
         ref:"User"
     },
+     timing:{
+        type:String,
+        required:true
+    },
     status:{
      type:String,
      require:true,
@@ -28,3 +32,4 @@ const bookingSchema = new mongoose.Schema({
         type:Number,
     }
 })
+module.exports = mongoose.model('Booking',bookingSchema)

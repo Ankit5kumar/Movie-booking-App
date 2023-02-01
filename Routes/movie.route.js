@@ -6,7 +6,7 @@ const {verifyToken,isAdmin} = require('../middlewares/authJWT');
 
 
 
-    Route.post("/mba/api/v1/movies", [verifyToken,isAdmin,movieRequestValidator.validateMovieRequest], 
+    Route.post("/mba/api/v1/movies", [verifyToken,isAdmin],movieRequestValidator.validateMovieRequest, 
     movieController.createMovie)
 
     Route.get("/mba/api/v1/movies",[verifyToken],movieController.getAllMovies)
