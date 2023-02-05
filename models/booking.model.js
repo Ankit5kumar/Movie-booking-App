@@ -1,4 +1,5 @@
-const mongoose = require('mongoose'); 
+const mongoose = require('mongoose');
+const {bookingStatus} = require('../utils/constants') 
 const bookingSchema = new mongoose.Schema({
     theatreId:{
         type:mongoose.SchemaTypes.ObjectId,
@@ -30,6 +31,19 @@ const bookingSchema = new mongoose.Schema({
     },
     totalCost:{
         type:Number,
+    },
+    createdAt:{
+        type:Date,
+        immutable:true,
+        default: ()=>{
+            return Date.now();
+        }
+    },
+    updatedAt:{
+        type:Date,
+        default:()=>{
+            return Date.now();
+        }
     }
 })
 module.exports = mongoose.model('Booking',bookingSchema)

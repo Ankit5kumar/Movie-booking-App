@@ -13,8 +13,16 @@ pending:"PENDING",
 approved:"APPROVED",
 rejected:"REJECTED",
 }
+const bookingStatus={
+    inProgress:"IN_PROGRESS",
+    completed:"COMPLETED",
+    cancelled:"CANCELLED",
+    expired:"EXPIRED",
+    failed:"FAILED"
+}
 module.exports={
     releaseStatus:releaseStatus,
     userTypes,
-    userStatus
+    userStatus,
+    bookingStatus
 }
