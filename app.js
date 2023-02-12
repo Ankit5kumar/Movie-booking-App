@@ -6,6 +6,7 @@ const TheatreRoute = require('./Routes/theatre.routes')
 const authRoutes = require('./Routes/auth.routes')
 const userRoute = require('./Routes/user.routes')
 const bookingRoute = require('./Routes/bookings.route')
+
 const config = require('./configs/config');
 require('./configs/db')
 app.get('/', (req, res) => {

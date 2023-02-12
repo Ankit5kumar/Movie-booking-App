@@ -20,9 +20,15 @@ const bookingStatus={
     expired:"EXPIRED",
     failed:"FAILED"
 }
+const paymentStatus = {
+    pending:"PENDING",
+    success:"SUCCESS",
+    failed:"FAILED"
+}
 module.exports={
     releaseStatus:releaseStatus,
     userTypes,
     userStatus,
-    bookingStatus
+    bookingStatus,
+    paymentStatus
 }
