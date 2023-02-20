@@ -29,6 +29,7 @@ module.exports={
     releaseStatus:releaseStatus,
     userTypes,
     userStatus,
+    ticketPrice:250,
     bookingStatus,
     paymentStatus
 }

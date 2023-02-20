@@ -3,7 +3,8 @@ const User = require('../models/user.model')
 const constants = require('../utils/constants')
 const jwt = require('jsonwebtoken');
 const config = require('../configs/auth.config');
-
+const notificationClient = require("../utils/notification")
+const {userRegistration} = require("../scripts/emailScripts")
 exports.signup = async (req, res) => {
     var userStatus;
     if(!req.body.userType || req.body.userType==constants.userStatus.approved){
@@ -23,7 +24,9 @@ exports.signup = async (req, res) => {
 
     try {
         const user = await User.create(userObject);
+        const {subject,html,text}=userRegistration(user)
         res.status(201).send(user);
+        notificationClient.sendEmail([user.email],subject,html,text,"Welcome to home",)
     } catch (error) {
         res.status(500).send({msg:"Internal Server error:"+err.message});
     }

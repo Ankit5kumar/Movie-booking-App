@@ -13,13 +13,7 @@ const sendEmail = (emailIds,subject,html,text) =>{
 let mailDetails = {
 	from: 'ak8068716@gmail.com',
 	to: reqEmailString,
-	subject: subject,
-    attachments: [  
-        {   
-        filename:"textfile.jpg",
-        path:"https://static.businessworld.in/article/article_extra_large_image/1609147522_O1aw88_BMS.jpg" 
-        }   
-        ] ,  
+	subject: subject,  
 	text: 'Node.js testing mail for GeeksforGeeks'
 };
 

@@ -11,7 +11,7 @@ exports.createBooking = async (req,res) => {
         userId:user._id,
         timing:req.body.timing,
         noOfSeats:req.body.noOfSeats,
-        totalCost:req.body.totalSeats*250
+        totalCost:req.body.noOfSeats * 250
     }
 
     try {
@@ -51,13 +51,13 @@ exports.updateBooking = async (req, res) => {
     try {
         const updatedBooking = await savedBooking.save();
         res.status(201).send(updatedBooking)
-    } catch (error) {
-        res.status(500).send({msg:"internal error"})
+    } catch (err) {
+        res.status(500).send({msg:"internal error",err});
     }
 }
 
 exports.cancelBooking = async (req, res) => {
-    const savedBooking = await savedBooking.findOne({_id:req.params.id});
+    const savedBooking = await Booking.findOne({_id:req.params.id});
     const savedUser = await User.findOne({
         userId:req.userId
     })
