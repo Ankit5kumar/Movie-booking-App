@@ -33,6 +33,9 @@ const theatreDeleted = (user,theatre)=>{
 
 }
 module.exports = {
-    userRegistration
-    
+    userRegistration,
+    userLoggedIn,
+    paymentSuccess,
+    newMovieAdded,
+    theatreDeleted
 }
